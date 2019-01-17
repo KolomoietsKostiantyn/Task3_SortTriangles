@@ -4,18 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Task3_SortTriangles.BL;
-using Task3_SortTriangles.UInterfase;
+using Task3_SortTriangles.UI;
 
 namespace Task3_SortTriangles
 {
     class Program
     {
-        static void Main(string[] args) // числа с плавающей точькой вводятся через "."
+        static void Main(string[] args) 
         {
-            UI newUI = new UI();
-            newUI.InitialDate = args;
-            MControler mControler = new MControler(newUI);
-            newUI.Start();
+            ConsoleUI newUI = new ConsoleUI();
+            MControler mControler = new MControler(newUI, args);
+            mControler.Start();
         }
     }
 }

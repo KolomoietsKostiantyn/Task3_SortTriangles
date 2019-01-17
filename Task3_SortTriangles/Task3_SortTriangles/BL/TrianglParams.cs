@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles.BL
 {
-    interface ILogick
+    enum TrianglParams
     {
-        bool addTriangl(string name, double side1, double side2, double side3);
-        List<Triangl> GetReversSortedList();
+        Name,
+        Side1,
+        Side2,
+        Side3,
+        RequiredToCreate
     }
 }

@@ -13,3 +13,7 @@ C:\Users\User\Desktop\Task3_SortTriangles\Task3_SortTriangles\obj\Debug\Task3_So
 C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\bin\Debug\Task3_SortTriangles.exe.config
 C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\obj\Debug\Task3_SortTriangles.exe
 C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\obj\Debug\Task3_SortTriangles.pdb
+C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\obj\Debug\Task3_SortTriangles.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\obj\Debug\Task3_SortTriangles.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\bin\Debug\Task3_SortTriangles.exe
+C:\Users\User\Documents\GitHub\Task3_SortTriangles\Task3_SortTriangles\Task3_SortTriangles\bin\Debug\Task3_SortTriangles.pdb

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,121 +10,132 @@ namespace Task3_SortTriangles.BL
 {
     class MControler
     {
-        public MControler(IUI visualizator)
-        {
-            visualizator.AskForSortedListDesc += GiveSortedList;
-            visualizator.DataSenderDesc += AddTriangl;
-            visualizator.StartAgainDesc += StartAtFirst;
+        private IVisualizer _visualizator;
+        private ILogick _logick;
+        private string[] _arr;
 
-        
+        public MControler(IVisualizer visualizator, string [] arr)
+        {
+            _arr = arr;
+            _visualizator = visualizator;
+            _logick = new Logick();       
         }
 
-        private bool AddTriangl(string innerString)
+        public void Start()
         {
+            ProcessingInner(_arr);
+            string dataAsk;
             string name;
-            double[] sides;
-            bool result = false;
-            if (ValidateInnerData(innerString,out sides, out name))
+            double side1;
+            double side2;
+            double side3;
+            do
             {
-                _triangls.Add(new Triangl(name, sides[0], sides[1], sides[2]));
-                result = true;
-            }
-            return result;  
+                bool flag = true;
+                do
+                {
+                    dataAsk = _visualizator.AskForData();
+                    if (StringToParams(dataAsk, out name, out side1, out side2, out side3))
+                    {
+                        if (_logick.addTriangl(name, side1, side2, side3))
+                        {
+                            flag = false;
+                        }
+                        else
+                        {
+                            _visualizator.ReturnAnsver(ExecutionResult.IncorectData);
+                        }
+                    }
+                    else
+                    {
+                        _visualizator.ReturnAnsver(ExecutionResult.IncorectData);
+                    }
+                } while (flag);
+
+            } while (_visualizator.ContinueRequest());
+            List<Triangl> tList = _logick.GetReversSortedList();
+            _visualizator.ReturnAnsver( ExecutionResult.Ok, ReturnAnswer(tList));
         }
 
-        private bool ValidateInnerData(string innerString,out double[] sides, out string name) //out sides чтоб компилятор не ругался 
+        private List<TrianglILvl> ReturnAnswer(List<Triangl> tList)
         {
-            int sideCount = 3;
-            name = " ";
-            sides = new double[sideCount]; 
-            bool result = true;
-            //парсим по ,
-            char[] splitSymbols = new char[] { ',' };
-            string[] TrianglesData = innerString.Split(splitSymbols);
-            for (int i = 0; i < TrianglesData.Length; i++)
+            List<TrianglILvl> result = new List<TrianglILvl>();
+            foreach (Triangl item in tList)
             {
-                char oldSymbols = '.';
-                char newSymbols = ',';
-                TrianglesData[i] = TrianglesData[i].Replace(oldSymbols, newSymbols);
-                oldSymbols = ' ';
-                newSymbols = '\0';
-                TrianglesData[i] = TrianglesData[i].Replace(oldSymbols, newSymbols);
-                oldSymbols = '\t';
-                TrianglesData[i] = TrianglesData[i].Replace(oldSymbols, newSymbols);
+                result.Add(new TrianglILvl(item.Name, item.Square));
             }
 
-            int paramCount = 4; 
-            if (TrianglesData.Length != paramCount) // как можно заменить??
+            return result;
+        }
+
+        private bool StringToParams(string str, out string name, out double side1, out double side2, out double side3)
+        {
+            bool result = true;
+            name = string.Empty;
+            side1 = 0.0;
+            side2 = 0.0;
+            side3 = 0.0;
+            string[] innerArr = (str).Split(',');
+            if (innerArr.Length != (int)TrianglParams.RequiredToCreate)
+            {
+                return false;
+            }
+            for (int i = 1; i < innerArr.Length; i++)
+            {
+                innerArr[i] = innerArr[i].Replace(" ", string.Empty).Replace("\t", string.Empty);
+            }
+            name = innerArr[(int)TrianglParams.Name];
+            if (!double.TryParse(innerArr[(int)TrianglParams.Side1], NumberStyles.Number,
+                    CultureInfo.CreateSpecificCulture("en-US"), out side1))
+            {
+                result = false;
+            }
+            if (result && !double.TryParse(innerArr[(int)TrianglParams.Side2], NumberStyles.Number,
+                    CultureInfo.CreateSpecificCulture("en-US"), out side2))
+            {
+                result = false;
+            }
+            if (result && !double.TryParse(innerArr[(int)TrianglParams.Side3], NumberStyles.Number,
+                    CultureInfo.CreateSpecificCulture("en-US"), out side3))
             {
                 result = false;
             }
 
-            if (result)
-            {
-                name = TrianglesData[0];
-
-                for (int i = 0; i < sideCount; i++)
-                {
-                    if (!double.TryParse(TrianglesData[i+1],out sides[i]))
-                    {
-                        result = false;
-                        break;
-                    }
-                }
-
-                //валидация длин
-                for (int i = 0; i < sideCount; i++)
-                {
-                    double sideSum = 0;
-                    for (int j = 0; j < sideCount; j++)
-                    {
-                        if (i != j)
-                        {
-                            sideSum += sides[j];
-                        }        
-                    }
-                    double sideVerification = sides[i] - sideSum;
-                    if (sideVerification >= 0)
-                    {
-                        result = false;
-                        break;
-                    }
-                }
-            }
-
             return result;
         }
 
-        private List<TrianglILvl> GiveSortedList()
+        private void ProcessingInner(string[] arr)
         {
-            _triangls.Sort();
-            _triangls.Reverse();
-            List<TrianglILvl> result = new List<TrianglILvl>();
-            foreach (Triangl item in _triangls)
+            if (arr == null || arr.Length == 0)
             {
-                result.Add(new TrianglILvl(item.Name, item.Square));
+                _visualizator.ReturnAnsver(ExecutionResult.Instruction);
+                return;
             }
-            return result;
-        }
-
-
-        private void StartAtFirst()
-        {
-            _triangls.Clear();
-        }
-
-        private List<TrianglILvl> ReturnSorted()//заменить на ienumerable
-        {
-            _triangls.Sort();
-            List<TrianglILvl> result = new List<TrianglILvl>();
-            foreach (Triangl item in _triangls)
+            string name;
+            double side1;
+            double side2;
+            double side3;
+            if (!ArrToTrianglParams(arr, out name, out side1, out side2, out side3) ||
+                    !_logick.addTriangl( name, side1, side2, side3))
             {
-                result.Add(new TrianglILvl(item.Name, item.Square));
+                _visualizator.ReturnAnsver(ExecutionResult.Instruction);
             }
-            return result;
+            else
+            {
+                _visualizator.ReturnAnsver(ExecutionResult.TriangleAdded);
+            }
         }
 
 
-        List<Triangl> _triangls = new List<Triangl>();
+        private bool ArrToTrianglParams(string[] arr, out string name, out double side1, out double side2, out double side3)
+        {
+            StringBuilder inner = new StringBuilder();
+            foreach (string item in arr)
+            {
+                inner.Append(item);
+            }
+
+            return StringToParams(inner.ToString(), out name, out side1, out side2, out side3);
+        }
     }
 }

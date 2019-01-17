@@ -6,5 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles.IntermediatLvl
 {
-    public delegate void StartAgain();
+    public enum ExecutionResult
+    {
+        Ok,
+        IncorectData,
+        Instruction,
+        TriangleAdded
+    }
 }

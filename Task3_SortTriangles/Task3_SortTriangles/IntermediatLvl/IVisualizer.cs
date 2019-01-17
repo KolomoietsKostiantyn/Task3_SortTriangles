@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles.IntermediatLvl
 {
-    public interface IUI
+    public interface IVisualizer
     {
-        event DataSender DataSenderDesc;
-        event AskForSortedList AskForSortedListDesc;
-        event StartAgain StartAgainDesc;
+        bool ContinueRequest();
+        string AskForData();
+        void ReturnAnsver(ExecutionResult result, List<TrianglILvl> roll = null);
     }
 }

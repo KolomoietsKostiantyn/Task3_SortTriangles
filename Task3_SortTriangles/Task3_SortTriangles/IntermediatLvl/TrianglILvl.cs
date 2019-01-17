@@ -25,8 +25,5 @@ namespace Task3_SortTriangles.IntermediatLvl
             get;
             private set;
         }
-
-
-
     }
 }

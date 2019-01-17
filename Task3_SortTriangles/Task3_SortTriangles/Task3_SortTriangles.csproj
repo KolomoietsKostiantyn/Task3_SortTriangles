@@ -45,14 +45,13 @@
     <Compile Include="BL\Logick.cs" />
     <Compile Include="BL\MControler.cs" />
     <Compile Include="BL\Triangl.cs" />
-    <Compile Include="IntermediatLvl\DataSender.cs" />
-    <Compile Include="IntermediatLvl\IUI.cs" />
-    <Compile Include="IntermediatLvl\AskForSortedList.cs" />
-    <Compile Include="IntermediatLvl\StartAgain.cs" />
+    <Compile Include="BL\TrianglParams.cs" />
+    <Compile Include="IntermediatLvl\ExecutionResult.cs" />
+    <Compile Include="IntermediatLvl\IVisualizer.cs" />
     <Compile Include="IntermediatLvl\TrianglILvl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UInterfase\UI.cs" />
+    <Compile Include="UI\ConsoleUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
