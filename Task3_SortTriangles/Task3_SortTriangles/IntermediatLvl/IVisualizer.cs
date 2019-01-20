@@ -10,6 +10,6 @@ namespace Task3_SortTriangles.IntermediatLvl
     {
         bool ContinueRequest();
         string AskForData();
-        void ReturnAnsver(ExecutionResult result, List<TrianglILvl> roll = null);
+        void ReturnAnsver(ExecutionResult result, List<TriangleILvl> roll = null);
     }
 }

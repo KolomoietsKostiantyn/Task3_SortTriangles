@@ -45,6 +45,7 @@
     <Compile Include="BL\Logick.cs" />
     <Compile Include="BL\MControler.cs" />
     <Compile Include="BL\Triangl.cs" />
+    <Compile Include="BL\TriangleSideValidator.cs" />
     <Compile Include="BL\TrianglParams.cs" />
     <Compile Include="IntermediatLvl\ExecutionResult.cs" />
     <Compile Include="IntermediatLvl\IVisualizer.cs" />

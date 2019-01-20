@@ -53,16 +53,16 @@ namespace Task3_SortTriangles.BL
                 } while (flag);
 
             } while (_visualizator.ContinueRequest());
-            List<Triangl> tList = _logick.GetReversSortedList();
+            List<Triangle> tList = _logick.GetReversSortedList();
             _visualizator.ReturnAnsver( ExecutionResult.Ok, ReturnAnswer(tList));
         }
 
-        private List<TrianglILvl> ReturnAnswer(List<Triangl> tList)
+        private List<TriangleILvl> ReturnAnswer(List<Triangle> tList)
         {
-            List<TrianglILvl> result = new List<TrianglILvl>();
-            foreach (Triangl item in tList)
+            List<TriangleILvl> result = new List<TriangleILvl>();
+            foreach (Triangle item in tList)
             {
-                result.Add(new TrianglILvl(item.Name, item.Square));
+                result.Add(new TriangleILvl(item.Name, item.Square));
             }
 
             return result;
@@ -125,7 +125,6 @@ namespace Task3_SortTriangles.BL
                 _visualizator.ReturnAnsver(ExecutionResult.TriangleAdded);
             }
         }
-
 
         private bool ArrToTrianglParams(string[] arr, out string name, out double side1, out double side2, out double side3)
         {

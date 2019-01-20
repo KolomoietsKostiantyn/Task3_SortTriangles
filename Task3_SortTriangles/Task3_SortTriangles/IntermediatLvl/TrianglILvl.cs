@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles.IntermediatLvl
 {
-    public class TrianglILvl
+    public class TriangleILvl
     {
-        public TrianglILvl(string name, double square)
+        public TriangleILvl(string name, double square)
         {
             Square = square;
             Name = name;

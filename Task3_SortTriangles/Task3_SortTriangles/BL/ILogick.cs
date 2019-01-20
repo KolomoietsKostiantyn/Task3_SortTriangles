@@ -9,6 +9,6 @@ namespace Task3_SortTriangles.BL
     interface ILogick
     {
         bool addTriangl(string name, double side1, double side2, double side3);
-        List<Triangl> GetReversSortedList();
+        List<Triangle> GetReversSortedList();
     }
 }

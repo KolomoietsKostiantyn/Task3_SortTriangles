@@ -6,49 +6,24 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles.BL
 {
-    class Triangl : IComparable<Triangl>
+    class Triangle : IComparable<Triangle>
     {
-        private Triangl()
+        private Triangle()
         { 
             
         }
 
-        public static Triangl CreateNew(string name, double side1, double side2, double side3)
+        public static Triangle CreateNew(string name, double side1, double side2, double side3)
         {
-            Triangl newTriangl = null;
-            if (ValideteSide(side1, side2, side3))
+            Triangle newTriangl = null;
+            if (TriangleSideValidator.Validate(side1, side2, side3))
             {
-                newTriangl = new Triangl(name, side1, side2, side3);
+                newTriangl = new Triangle(name, side1, side2, side3);
             }
             return newTriangl;
         }
 
-        private static bool ValideteSide(double side1, double side2, double side3)
-        {
-            bool result = true;
-            if (side1 <= 0 || side2 <= 0 || side3 <= 0)
-            {
-                return false;
-            }
-
-            if ((side1 - side2 - side3) >= 0)
-            {
-                result = false;
-            }
-            if ((side2 - side3 - side1) >= 0)
-            {
-                result = false;
-            }
-            if ((side3 - side1 - side2) >= 0)
-            {
-                result = false;
-            }
-
-            return result;
-        }
-
-
-        private Triangl(string name, double side1, double side2, double side3)
+        private Triangle(string name, double side1, double side2, double side3)
         {
             Side1 = side1;
             Side2 = side2;
@@ -90,7 +65,7 @@ namespace Task3_SortTriangles.BL
             } 
         }
 
-        public int CompareTo(Triangl other)
+        public int CompareTo(Triangle other)
         {
             int result = 0;
             if (Square < other.Square)

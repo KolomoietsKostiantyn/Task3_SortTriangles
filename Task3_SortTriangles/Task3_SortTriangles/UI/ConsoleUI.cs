@@ -32,7 +32,7 @@ namespace Task3_SortTriangles.UI
             return Console.ReadLine();
         }
 
-        public void ReturnAnsver(ExecutionResult result, List<TrianglILvl> roll = null)
+        public void ReturnAnsver(ExecutionResult result, List<TriangleILvl> roll = null)
         {
             switch (result)
             {
