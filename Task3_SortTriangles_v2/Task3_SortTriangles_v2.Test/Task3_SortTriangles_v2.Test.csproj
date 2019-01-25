@@ -62,8 +62,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aditional\MControlerMod.cs" />
-    <Compile Include="BL\MControlerTest.cs" />
+    <Compile Include="Aditional\TriangleCompare.cs" />
+    <Compile Include="Aditional\TriangleToUICompare.cs" />
+    <Compile Include="BL\ConverterTrianglToTrianglUITest.cs" />
+    <Compile Include="BL\InnerDataParserTest.cs" />
+    <Compile Include="BL\ReversSorterTest.cs" />
+    <Compile Include="BL\StorageTest.cs" />
     <Compile Include="BL\TrianglCreatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

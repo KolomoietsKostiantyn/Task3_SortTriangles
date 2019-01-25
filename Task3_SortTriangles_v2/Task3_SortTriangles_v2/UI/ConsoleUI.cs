@@ -32,13 +32,16 @@ namespace Task3_SortTriangles_v2.UI
             return result;
         }
 
-        public void ReturnAnsver(List<TriangleToUI> roll)
+        public void ReturnAnsver(IEnumerable<TriangleToUI> roll)
         {
+
             Console.WriteLine("============= Triangles list: ===============");
-            for (int i = 0; i < roll.Count; i++)
+            int i = 1;
+            foreach (TriangleToUI item in roll)
             {
-                double squere = Math.Round((roll[i].Square), accuracy);
-                Console.WriteLine(string.Format("{0}. [{1}]: {2} сm", (i + 1), roll[i].Name, squere));
+                double squere = Math.Round(item.Square, accuracy);
+                Console.WriteLine(string.Format("{0}. [{1}]: {2} сm", i , item.Name, squere));
+                i++;
             }
             Console.ReadKey();
         }

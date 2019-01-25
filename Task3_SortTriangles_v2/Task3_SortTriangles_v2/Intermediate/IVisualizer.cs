@@ -11,6 +11,6 @@ namespace Task3_SortTriangles_v2.Intermediate
         bool ContinueRequest();
         string AskForData();
         void ReturnMessage(ExecutionResult result);
-        void ReturnAnsver( List<TriangleToUI> roll );
+        void ReturnAnsver(IEnumerable<TriangleToUI> roll );
     }
 }

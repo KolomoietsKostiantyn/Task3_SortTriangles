@@ -11,12 +11,13 @@ namespace Task3_SortTriangles_v2.BL
         public  Triangle CreateNew(string name, double side1, double side2, double side3)
         {
             Triangle newTriangl = null;
-            if (ValidateTrianglSide(side1, side2, side3))
+            if (ValidateTrianglSide(side1, side2, side3) && !string.IsNullOrWhiteSpace(name))
             {
                 newTriangl = new Triangle(name, side1, side2, side3);
             }
             return newTriangl;
         }
+
 
         public bool ValidateTrianglSide(double side1, double side2, double side3)
         {

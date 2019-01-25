@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles_v2.BL
 {
-    class Storage : ITrianglStorage
+    public class Storage : ITrianglStorage
     {
         private List<Triangle> _triangls = new List<Triangle>();
         IReversSorter _reversSorter;
@@ -18,7 +18,7 @@ namespace Task3_SortTriangles_v2.BL
             _reversSorter = reversSorter;
         }
 
-        public bool addTriangl(string name, double side1, double side2, double side3)
+        public bool AddTriangl(string name, double side1, double side2, double side3)
         {
             bool result = false;
             Triangle nTriangl = _trianglCreator.CreateNew(name, side1, side2, side3);

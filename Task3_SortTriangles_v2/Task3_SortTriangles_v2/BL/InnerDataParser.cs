@@ -7,28 +7,30 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles_v2.BL
 {
-    class InnerDataParser : IInnerDataParser
+    public class InnerDataParser : IInnerDataParser
     {
-        public void ValidateInputArray(string[] arr, int requiredLength)
+        public bool ValidateInputArray(string[] arr, int requiredLength)
         {
-            
+            bool result = true;
             if (arr == null || arr.Length != requiredLength)
             {
-                throw new ArgumentNullException("string[] arr");
+                return false;
             }
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] == null)
+                if (string.IsNullOrWhiteSpace(arr[i]))
                 {
-                    throw new ArgumentNullException("arr["+i+"]");
+                    result = false;
+                    break;
                 }
             }
+
+            return result;
         }
 
-        public string DeleteSeparatorsFromArr(string[] arr, int requiredLength)
+        public string ConvertToCorrectStringWithoutSeparators(string[] arr, int elementCount)
         {
-            ValidateInputArray(arr, requiredLength);
             StringBuilder sBuilder = new StringBuilder();
             foreach (string item in arr)
             {
@@ -37,22 +39,38 @@ namespace Task3_SortTriangles_v2.BL
             sBuilder = sBuilder.Replace(" ",string.Empty);
             sBuilder = sBuilder.Replace("\t", string.Empty);
             string[] newArray = (sBuilder.ToString()).Split(',');
-            if (newArray.Length != requiredLength)
+            if (newArray.Length != elementCount)
             {
                 throw new ArgumentException("wrong comma count");
             }
-            sBuilder.Clear();
             foreach (string item in newArray)
             {
-                sBuilder.Append(item);
+                if (string.IsNullOrWhiteSpace(item))
+                {
+                    throw new ArgumentException("Empty element");
+                }
+            }
+            sBuilder.Clear();
+            bool separator = true;
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                if (separator)
+                {
+                    sBuilder.Append(newArray[i]);
+                    separator = false;
+                }
+                else
+                {
+                    sBuilder.Append(string.Format(",{0}", newArray[i]));
+                }
             }
 
-            return sBuilder.ToString();
+            return (sBuilder.ToString()).TrimEnd();
         }
 
-        public string DeleteSeparatorsFromString(string arr, int requiredLength)
+        public string ConvertToCorrectStringWithoutSeparators(string arr, int elementCount)
         {
-            return DeleteSeparatorsFromArr(new string[] { arr }, requiredLength);
+            return ConvertToCorrectStringWithoutSeparators(new string[] { arr}, elementCount);
         }
 
 
@@ -69,7 +87,7 @@ namespace Task3_SortTriangles_v2.BL
                 return false;
             }
             name = newArray[0];
-            if (!double.TryParse(newArray[1], NumberStyles.Number,
+            if (double.TryParse(newArray[1], NumberStyles.Number,
             CultureInfo.CreateSpecificCulture("en-US"), out side1))
             {
                 if (side1 <= 0)
@@ -77,7 +95,11 @@ namespace Task3_SortTriangles_v2.BL
                     result = false;
                 }
             }
-            if (result && !double.TryParse(newArray[2], NumberStyles.Number,
+            else
+            {
+                result = false;
+            }
+            if (result && double.TryParse(newArray[2], NumberStyles.Number,
                     CultureInfo.CreateSpecificCulture("en-US"), out side2))
             {
                 if (side2 <= 0)
@@ -85,13 +107,21 @@ namespace Task3_SortTriangles_v2.BL
                     result = false;
                 }
             }
-            if (result && !double.TryParse(newArray[3], NumberStyles.Number,
+            else
+            {
+                result = false;
+            }
+            if (result && double.TryParse(newArray[3], NumberStyles.Number,
                     CultureInfo.CreateSpecificCulture("en-US"), out side3))
             {
                 if (side3 <= 0)
                 {
                     result = false;
                 }
+            }
+            else
+            {
+                result = false;
             }
 
             return result;

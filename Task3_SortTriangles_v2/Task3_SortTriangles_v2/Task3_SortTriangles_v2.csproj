@@ -47,14 +47,12 @@
     <Compile Include="BL\InnerDataParser.cs" />
     <Compile Include="BL\Interfases\IConverterTrianglToTrianglUI.cs" />
     <Compile Include="BL\Interfases\IInnerDataParser.cs" />
-    <Compile Include="BL\Interfases\IFactoryBLInitializer.cs" />
     <Compile Include="BL\Interfases\IReversSorter.cs" />
     <Compile Include="BL\Interfases\ITrianglCreator.cs" />
     <Compile Include="BL\Interfases\ITrianglStorage.cs" />
     <Compile Include="BL\MControler.cs" />
     <Compile Include="BL\ReversSorter.cs" />
     <Compile Include="BL\Storage.cs" />
-    <Compile Include="BL\FacroryBLInitializer.cs" />
     <Compile Include="BL\TrianglCreator.cs" />
     <Compile Include="BL\Triangle.cs" />
     <Compile Include="Intermediate\ExecutionResult.cs" />

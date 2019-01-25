@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task3_SortTriangles_v2.BL
 {
-    class ReversSorter : IReversSorter
+    public class ReversSorter : IReversSorter
     {
         public List<Triangle> ReversSort(List<Triangle> triangles)
         {
