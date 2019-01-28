@@ -25,9 +25,9 @@ namespace Task3_SortTriangles_v2.Test.BL
         public void ConvertTriangls_Validdata_Null()
         {
             List<Triangle> tList = new List<Triangle>();
-            tList.Add(new Triangle("t1",3,4,5)); // 6
-            tList.Add(new Triangle("t2", 6, 8, 10)); // 24
-            tList.Add(new Triangle("t3", 1.5, 2, 2.5)); //1,5
+            tList.Add(new Triangle("t1",3,4,5)); 
+            tList.Add(new Triangle("t2", 6, 8, 10)); 
+            tList.Add(new Triangle("t3", 1.5, 2, 2.5)); 
 
             ConverterTrianglToTrianglUI converter = new ConverterTrianglToTrianglUI();
             List<TriangleToUI> result = converter.ConvertTriangls(tList);
