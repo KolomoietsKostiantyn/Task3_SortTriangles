@@ -22,7 +22,7 @@ namespace Task3_SortTriangles_v2.Test.BL
         }
 
         [TestMethod]
-        public void ConvertTriangls_Validdata_Null()
+        public void ConvertTriangls_Validdata_Ok()
         {
             List<Triangle> tList = new List<Triangle>();
             tList.Add(new Triangle("t1",3,4,5)); 
@@ -39,8 +39,7 @@ namespace Task3_SortTriangles_v2.Test.BL
 
             TriangleToUICompare triangleToUICompare = new TriangleToUICompare();
 
-            CollectionAssert.AreEqual(result, expect, triangleToUICompare);
-            
+            CollectionAssert.AreEqual(result, expect, triangleToUICompare);  
         }
     }
 }

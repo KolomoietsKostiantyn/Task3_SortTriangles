@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\ConverterTrianglToTrianglUI.cs" />
+    <Compile Include="BL\FacroryBLInitializer.cs" />
+    <Compile Include="BL\Interfases\IFactoryBLInitializer.cs" />
     <Compile Include="BL\InnerDataParser.cs" />
     <Compile Include="BL\Interfases\IConverterTrianglToTrianglUI.cs" />
     <Compile Include="BL\Interfases\IInnerDataParser.cs" />

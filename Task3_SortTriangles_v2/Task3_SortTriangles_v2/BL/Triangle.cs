@@ -45,8 +45,7 @@ namespace Task3_SortTriangles_v2.BL
             get
             {
                 double p = (Side1 + Side2 + Side3) / 2;
-                double p1 = Math.Sqrt(p * (p - Side1) * (p - Side2) * (p - Side3));
-                return p1;
+                return Math.Sqrt(p * (p - Side1) * (p - Side2) * (p - Side3));
             }
         }
 
@@ -61,11 +60,6 @@ namespace Task3_SortTriangles_v2.BL
             if (Square > other.Square)
             {
                 result = 1;
-            }
-
-            if (Square == other.Square)
-            {
-                result = 0;
             }
 
             return result;

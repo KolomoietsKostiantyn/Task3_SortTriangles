@@ -14,15 +14,10 @@ namespace Task3_SortTriangles_v2
         static void Main(string[] args)
         {
 
-            //IFactoryBLInitializer factoryBLInitializer = new FacroryBLInitializer();
+            IFactoryBLInitializer factoryBLInitializer = new FacroryBLInitializer();
 
-            IInnerDataParser  iDataParser = new InnerDataParser();
-            IConverterTrianglToTrianglUI converterTrianglToTrianglUI = new ConverterTrianglToTrianglUI();
-            IReversSorter reversSorter = new ReversSorter();
-            ITrianglCreator trianglCreator = new TrianglCreator();
-            ITrianglStorage tlStorage = new Storage(reversSorter, trianglCreator);
             IVisualizer visualizer = new ConsoleUI();
-            MControler mControler = new MControler(tlStorage, iDataParser, converterTrianglToTrianglUI, visualizer, args);
+            MControler mControler = new MControler(visualizer, factoryBLInitializer, args);
             mControler.Start();
         }
     }

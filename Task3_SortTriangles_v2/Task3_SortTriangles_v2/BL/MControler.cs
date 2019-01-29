@@ -15,12 +15,12 @@ namespace Task3_SortTriangles_v2.BL
         private IInnerDataParser _innerDataParser;
         private IConverterTrianglToTrianglUI _converterTrianglToTrianglUI;
 
-        public MControler(ITrianglStorage storage, IInnerDataParser parser, IConverterTrianglToTrianglUI converter, IVisualizer visualizator, string[] arr)
+        public MControler(IVisualizer visualizator, IFactoryBLInitializer factoryBLInitializer, string[] arr)
         {
             _visualizator = visualizator;
-            _storage = storage;
-            _innerDataParser = parser;
-            _converterTrianglToTrianglUI = converter;
+            _storage = factoryBLInitializer.CreateStorage();
+            _innerDataParser = factoryBLInitializer.CreateInnerDataParser();
+            _converterTrianglToTrianglUI = factoryBLInitializer.CreateConverterTrianglToTrianglUI();
             _arr = arr;
         }
 
@@ -28,9 +28,9 @@ namespace Task3_SortTriangles_v2.BL
         public void Start()
         {
             string innerData = string.Empty;
-            if (_innerDataParser.ValidateInputArray(_arr, 4))
+            if (_innerDataParser.ValidateInputArray(_arr))
             {
-                innerData = _innerDataParser.ConvertToCorrectStringWithoutSeparators(_arr, 4);
+                innerData = _innerDataParser.ConvertToCorrectStringWithoutSeparators(_arr);
             }
             else
             {
@@ -50,7 +50,7 @@ namespace Task3_SortTriangles_v2.BL
         {
             try
             {
-                toAdd = _innerDataParser.ConvertToCorrectStringWithoutSeparators(toAdd,4);
+                toAdd = _innerDataParser.ConvertToCorrectStringWithoutSeparatorsString(toAdd);
             }
             catch (ArgumentException)
             {

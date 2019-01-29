@@ -8,9 +8,9 @@ namespace Task3_SortTriangles_v2.BL
 {
     public interface IInnerDataParser
     {
-        bool ValidateInputArray(string [] arr, int requiredLength);
-        string ConvertToCorrectStringWithoutSeparators(string[] arr, int requiredLength);
-        string ConvertToCorrectStringWithoutSeparators(string arr, int requiredLength);
+        bool ValidateInputArray(string [] arr);
+        string ConvertToCorrectStringWithoutSeparators(string[] arr);
+        string ConvertToCorrectStringWithoutSeparatorsString(string arr);
         bool SplitStringToValidateParams(string arr, out string name, out double side1, out double side2, out double side3);
     }
 }

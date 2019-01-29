@@ -9,10 +9,11 @@ namespace Task3_SortTriangles_v2.BL
 {
     public class InnerDataParser : IInnerDataParser
     {
-        public bool ValidateInputArray(string[] arr, int requiredLength)
+        public bool ValidateInputArray(string[] arr)
         {
+            int expectedLenth = 4;
             bool result = true;
-            if (arr == null || arr.Length != requiredLength)
+            if (arr == null || arr.Length != expectedLenth)
             {
                 return false;
             }
@@ -29,8 +30,12 @@ namespace Task3_SortTriangles_v2.BL
             return result;
         }
 
-        public string ConvertToCorrectStringWithoutSeparators(string[] arr, int elementCount)
+        public string ConvertToCorrectStringWithoutSeparators(string[] arr)
         {
+            if (!ValidateInputArray(arr))
+            {
+                return null;
+            }
             StringBuilder sBuilder = new StringBuilder();
             foreach (string item in arr)
             {
@@ -39,15 +44,16 @@ namespace Task3_SortTriangles_v2.BL
             sBuilder = sBuilder.Replace(" ",string.Empty);
             sBuilder = sBuilder.Replace("\t", string.Empty);
             string[] newArray = (sBuilder.ToString()).Split(',');
-            if (newArray.Length != elementCount)
+            int expectedLenth = 4;
+            if (newArray.Length != expectedLenth)
             {
-                throw new ArgumentException("wrong comma count");
+                return null;
             }
             foreach (string item in newArray)
             {
                 if (string.IsNullOrWhiteSpace(item))
                 {
-                    throw new ArgumentException("Empty element");
+                    return null;
                 }
             }
             sBuilder.Clear();
@@ -68,9 +74,13 @@ namespace Task3_SortTriangles_v2.BL
             return (sBuilder.ToString()).TrimEnd();
         }
 
-        public string ConvertToCorrectStringWithoutSeparators(string arr, int elementCount)
+        public string ConvertToCorrectStringWithoutSeparatorsString(string arr)
         {
-            return ConvertToCorrectStringWithoutSeparators(new string[] { arr}, elementCount);
+            if (string.IsNullOrWhiteSpace(arr))
+            {
+                return null;
+            }
+            return ConvertToCorrectStringWithoutSeparators( arr.Split(','));
         }
 
 
@@ -82,7 +92,8 @@ namespace Task3_SortTriangles_v2.BL
             side2 = 0.0;
             side3 = 0.0;
             string[] newArray = (innerData).Split(',');
-            if (newArray.Length != 4)
+
+            if (!ValidateInputArray(newArray))
             {
                 return false;
             }

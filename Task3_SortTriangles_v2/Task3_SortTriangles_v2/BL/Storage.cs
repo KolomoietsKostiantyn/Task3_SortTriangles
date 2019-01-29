@@ -8,7 +8,7 @@ namespace Task3_SortTriangles_v2.BL
 {
     public class Storage : ITrianglStorage
     {
-        private List<Triangle> _triangls = new List<Triangle>();
+        public List<Triangle> _triangls = new List<Triangle>();
         IReversSorter _reversSorter;
         ITrianglCreator _trianglCreator;
 
@@ -34,7 +34,12 @@ namespace Task3_SortTriangles_v2.BL
         public List<Triangle> GetReversSortedList()
         {
             _triangls = _reversSorter.ReversSort(_triangls);
-            return _triangls;
+            List<Triangle> reverseSortedTriangl = new List<Triangle>();
+            foreach (Triangle item in _triangls)
+            {
+                reverseSortedTriangl.Add(_trianglCreator.CreateNew(item.Name, item.Side1, item.Side2, item.Side3));
+            }
+            return reverseSortedTriangl;
         }
     }
 }

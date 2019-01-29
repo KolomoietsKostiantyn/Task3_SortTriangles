@@ -69,6 +69,7 @@
     <Compile Include="BL\ReversSorterTest.cs" />
     <Compile Include="BL\StorageTest.cs" />
     <Compile Include="BL\TrianglCreatorTest.cs" />
+    <Compile Include="BL\TriangleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
