@@ -18,8 +18,7 @@ namespace Task3_SortTriangles_v2.BL
             return newTriangl;
         }
 
-
-        public bool ValidateTrianglSide(double side1, double side2, double side3)
+        private bool ValidateTrianglSide(double side1, double side2, double side3)
         {
             bool result = true;
             if (side1 <= 0 || side2 <= 0 || side3 <= 0)

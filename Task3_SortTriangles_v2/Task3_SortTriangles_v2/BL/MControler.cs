@@ -24,6 +24,14 @@ namespace Task3_SortTriangles_v2.BL
             _arr = arr;
         }
 
+        public MControler(IVisualizer visualizator, ITrianglStorage storage, IInnerDataParser innerDataParser, IConverterTrianglToTrianglUI converterTrianglToTrianglUI, string[] arr)
+        {
+            _visualizator = visualizator;
+            _storage = storage;
+            _innerDataParser = innerDataParser;
+            _converterTrianglToTrianglUI = converterTrianglToTrianglUI;
+            _arr = arr;
+        }
 
         public void Start()
         {
@@ -31,13 +39,12 @@ namespace Task3_SortTriangles_v2.BL
             if (_innerDataParser.ValidateInputArray(_arr))
             {
                 innerData = _innerDataParser.ConvertToCorrectStringWithoutSeparators(_arr);
+                TryAddTriangl(innerData);
             }
             else
             {
                 _visualizator.ReturnMessage(ExecutionResult.Instruction);
-            }
-            
-            TryAddTriangl(innerData);
+            } 
             do
             {
                 string data = _visualizator.AskForData();
@@ -48,13 +55,9 @@ namespace Task3_SortTriangles_v2.BL
 
         protected bool TryAddTriangl(string toAdd)
         {
-            try
+            toAdd = _innerDataParser.ConvertToCorrectStringWithoutSeparatorsString(toAdd);
+            if (toAdd == null)
             {
-                toAdd = _innerDataParser.ConvertToCorrectStringWithoutSeparatorsString(toAdd);
-            }
-            catch (ArgumentException)
-            {
-                _visualizator.ReturnMessage(ExecutionResult.IncorectData);
                 return false;
             }
             string name;

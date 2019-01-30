@@ -66,6 +66,7 @@
     <Compile Include="Aditional\TriangleToUICompare.cs" />
     <Compile Include="BL\ConverterTrianglToTrianglUITest.cs" />
     <Compile Include="BL\InnerDataParserTest.cs" />
+    <Compile Include="BL\MControlerTest.cs" />
     <Compile Include="BL\ReversSorterTest.cs" />
     <Compile Include="BL\StorageTest.cs" />
     <Compile Include="BL\TrianglCreatorTest.cs" />

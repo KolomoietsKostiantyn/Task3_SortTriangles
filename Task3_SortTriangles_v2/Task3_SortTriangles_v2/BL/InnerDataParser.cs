@@ -74,29 +74,38 @@ namespace Task3_SortTriangles_v2.BL
             return (sBuilder.ToString()).TrimEnd();
         }
 
-        public string ConvertToCorrectStringWithoutSeparatorsString(string arr)
+        public string ConvertToCorrectStringWithoutSeparatorsString(string srt)
         {
-            if (string.IsNullOrWhiteSpace(arr))
+            if (string.IsNullOrWhiteSpace(srt))
             {
                 return null;
             }
-            return ConvertToCorrectStringWithoutSeparators( arr.Split(','));
+            string result = srt.Replace(" ", string.Empty);
+            result = result.Replace("\t", string.Empty);
+            return result;
         }
 
 
         public bool SplitStringToValidateParams(string innerData, out string name, out double side1, out double side2, out double side3)
         {
+
             bool result = true;
             name = string.Empty;
             side1 = 0.0;
             side2 = 0.0;
             side3 = 0.0;
+            if (string.IsNullOrEmpty(innerData))
+            {
+                return false;
+            }
             string[] newArray = (innerData).Split(',');
 
             if (!ValidateInputArray(newArray))
             {
                 return false;
             }
+
+
             name = newArray[0];
             if (double.TryParse(newArray[1], NumberStyles.Number,
             CultureInfo.CreateSpecificCulture("en-US"), out side1))

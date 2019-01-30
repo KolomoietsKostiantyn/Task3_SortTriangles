@@ -228,35 +228,9 @@ namespace Task3_SortTriangles_v2.Test.BL
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        public void ConvertToCorrectStringWithoutSeparatorsString_TooFewValue_Null()
-        {
-            string inner = "33,33";
 
-            string result = _parser.ConvertToCorrectStringWithoutSeparatorsString(inner);
 
-            Assert.IsNull(result);
-        }
 
-        [TestMethod]
-        public void ConvertToCorrectStringWithoutSeparatorsString_TooManyValue_Null()
-        {
-            string inner = "33,33,33,33,33";
-
-            string result = _parser.ConvertToCorrectStringWithoutSeparatorsString(inner);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void ConvertToCorrectStringWithoutSeparatorsString_IncorectSeparatorSequence_Null()
-        {
-            string inner = "33,,,33 33 33 ";
-
-            string result = _parser.ConvertToCorrectStringWithoutSeparatorsString(inner);
-
-            Assert.IsNull(result);
-        }
 
 
 
